@@ -3,7 +3,7 @@
 # earlier versions of Drupal are tracked in `community/PHP/`
 
 # Ignore configuration files that may contain sensitive information
-/web/sites/*/*settings*.php
+#/web/sites/*/*settings*.php
 /web/sites/*/*services*.yml
 
 # Ignore paths that may contain user-generated content
