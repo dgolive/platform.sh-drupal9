@@ -4,6 +4,8 @@
 
 # Ignore configuration files that may contain sensitive information
 #/web/sites/*/*settings*.php
+/web/sites/default.settings.php
+#/web/sites/settings.platformsh.php
 /web/sites/*/*services*.yml
 
 # Ignore paths that may contain user-generated content

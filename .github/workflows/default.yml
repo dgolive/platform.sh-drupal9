@@ -102,6 +102,6 @@ jobs:
         if: ${{ github.event_name == 'push' && contains(github.ref_name, 'release/') }}
 
 
-      - name: Sleep for 30 seconds to complete P.sh actions
-        run: sleep 30s
-        shell: bash
+      #- name: Sleep for 30 seconds to complete P.sh actions
+      #  run: sleep 30s
+      #  shell: bash
