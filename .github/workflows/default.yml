@@ -1,0 +1,107 @@
+name: Drupal deploy workflow with Platform.sh
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+      - main
+      - 'feature/*'
+      - 'hotfix/*'
+      - 'release/v[0-9].[0-9]+.[0-9]+'
+      - 'v[0-9].[0-9]+.[0-9]+'
+    tags:
+      - 'v[0-9].[0-9]+.[0-9]+'
+  pull_request:
+    branches:
+      - dev
+      - main
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  full:
+    name: Full (Build, Validate, Test', Deploy)
+
+    runs-on: ubuntu-18.04
+    #strategy:
+    #  matrix:
+    #    site: [ "site1", "site2", "site3" ]
+    container:
+      image: geerlingguy/drupal-vm:latest
+
+    services:
+      mariadb:
+        image: quay.io/juampynr/drupal8-github-actions:latest
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Prepare environment variables
+        shell: bash
+        run: |
+          GITHUB_BRANCH_NAME=$(echo ${GITHUB_REF/refs\/heads\/}) 
+          GITHUB_REF_NAME=${GITHUB_BRANCH_NAME##*/}
+          echo "##[set-output name=branch;]$(echo $GITHUB_REF_NAME)"
+        id: extract_branch  
+
+      - name: Determine Composer cache directory
+        shell: bash
+        run: "echo \"COMPOSER_CACHE_DIR=$(composer config cache-dir)\" >> $GITHUB_ENV"
+
+      - name: Cache dependencies installed with Composer
+        uses: actions/cache@v2
+        with:
+          path: |
+            "${{ env.COMPOSER_CACHE_DIR }}"
+            vendor
+            docroot/core
+            docroot/libraries
+            docroot/modules/contrib
+          key: os-${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}-site-${{ matrix.site }}
+
+      - name: Install Composer Dependencies
+        run: |
+          composer self-update --2
+          composer --no-interaction install --no-progress --prefer-dist --no-suggest --optimize-autoloader -vvv
+
+      - name: Composer validate and install
+        run: |
+          composer validate
+          composer self-update --2
+          composer install
+
+      - name: Node install
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+     
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}  #new tag v1.9.0w
+          release_name: ${{ steps.extract_branch.outputs.branch }}
+          body: |
+            Changes in this Release
+            - Fixed if condition to run only for releases.
+            - Test new release v1.9.0
+          draft: false
+          prerelease: false
+        if: ${{ github.event_name == 'push' && contains(github.ref_name, 'release/') }}
+
+
+      - name: Sleep for 30 seconds to complete P.sh actions
+        run: sleep 30s
+        shell: bash
