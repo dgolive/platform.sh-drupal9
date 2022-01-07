@@ -10,7 +10,7 @@
 
 "https://www.epontech.com/":
     type: redirect
-    to: "https://www.{default}/"
+    to: "https://www.epontech.com/"
 
 
 "http://www.epontech.com":
@@ -24,4 +24,4 @@
 
 "http://www.epontech.com/":
     type: redirect
-    to: "http://www.{default}/"
+    to: "http://www.epontech.com/"
