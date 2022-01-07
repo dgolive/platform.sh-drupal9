@@ -1,5 +1,5 @@
 # Each route describes how an incoming URL is going to be processed by Platform.sh.
-"https://www.{default}/":
+"https://epontech.com/":
     type: upstream
     upstream: "app:http"
     cache:
@@ -8,6 +8,6 @@
       # Base the cache on the session cookie and custom Drupal cookies. Ignore all other cookies.
       cookies: ['/^SS?ESS/', '/^Drupal.visitor/']
 
-"https://{default}/":
+"https://www.epontech.com/":
     type: redirect
-    to: "https://www.{default}/"
+    to: "https://epon.com.br/"
