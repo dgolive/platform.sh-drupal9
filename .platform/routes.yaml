@@ -1,12 +1,23 @@
-# Each route describes how an incoming URL is going to be processed by Platform.sh.
 "https://www.epontech.com/":
     type: upstream
     upstream: "app:http"
+    cache:
+      enabled: true
+
+      # Base the cache on the session cookie and custom Drupal cookies. Ignore all other cookies.
+      cookies: ['/^SS?ESS/', '/^Drupal.visitor/']
+
+"https://www.epontech.com/":
+    type: redirect
+    to: "https://www.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
+
 
 "http://www.epontech.com":
     type: upstream
     upstream: "app:http"
+    cache:
+      enabled: false
 
-#"http://www.epontech.com/":
-#    type: redirect
-#    to: "http://www.epontech.com/"
+"http://www.epontech.com/":
+    type: redirect
+    to: "http://www.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
