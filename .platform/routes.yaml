@@ -1,4 +1,4 @@
-"https://www.epontech.com/":
+"https://epontech.com/":
     type: upstream
     upstream: "app:http"
     cache:
@@ -12,7 +12,7 @@
     to: "https://www.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
 
 
-"http://www.epontech.com":
+"http://epontech.com":
     type: upstream
     upstream: "app:http"
     cache:
