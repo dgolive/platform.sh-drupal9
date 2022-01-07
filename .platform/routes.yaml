@@ -1,5 +1,5 @@
 # Each route describes how an incoming URL is going to be processed by Platform.sh.
-"https://www.{default}/":
+"https://www.epontech.com/":
     type: upstream
     upstream: "app:http"
     cache:
@@ -13,7 +13,7 @@
     to: "https://www.{default}/"
 
 
-"http://www.{default}/":
+"http://www.epontech.com":
     type: upstream
     upstream: "app:http"
     cache:
