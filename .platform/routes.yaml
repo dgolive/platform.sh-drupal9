@@ -9,7 +9,7 @@
 
 "https://www.epontech.com/":
     type: redirect
-    to: "https://www.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
+    to: "https://epontech.com.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
 
 
 "http://epontech.com":
@@ -20,4 +20,4 @@
 
 "http://www.epontech.com/":
     type: redirect
-    to: "http://www.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
+    to: "http://epontech.com.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
