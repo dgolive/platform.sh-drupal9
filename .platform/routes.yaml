@@ -1,4 +1,4 @@
-"https://epontech.com/":
+"http://{default}/":
     type: upstream
     upstream: "app:http"
     cache:
@@ -6,18 +6,3 @@
 
       # Base the cache on the session cookie and custom Drupal cookies. Ignore all other cookies.
       cookies: ['/^SS?ESS/', '/^Drupal.visitor/']
-
-"https://www.epontech.com/":
-    type: redirect
-    to: "https://epontech.com.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
-
-
-"http://epontech.com":
-    type: upstream
-    upstream: "app:http"
-    cache:
-      enabled: false
-
-"http://www.epontech.com/":
-    type: redirect
-    to: "http://epontech.com.main-bvxea6i-buw3dwz6pnh2a.us-4.platformsh.site/"
