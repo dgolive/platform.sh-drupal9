@@ -70,9 +70,9 @@ jobs:
 
       - name: Install Composer Dependencies
         run: |
-          sudo composer validate
-          sudo composer self-update --2
-          sudo composer --no-interaction install --no-progress --prefer-dist --no-suggest --optimize-autoloader -vvv
+          composer validate --no-scripts --no-plugins
+          composer self-update --2 --no-scripts --no-plugins
+          composer install --no-scripts --no-plugins -vvv
 
       - name: Node install
         uses: actions/setup-node@v2
