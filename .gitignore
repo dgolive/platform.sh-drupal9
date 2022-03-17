@@ -50,3 +50,10 @@ vendor
 /web/robots.txt
 /web/update.php
 /web/web.config
+
+# db
+/db
+*--dump.sql.gz
+
+
+lando*

@@ -29,8 +29,8 @@ jobs:
     #strategy:
     #  matrix:
     #    site: [ "site1", "site2", "site3" ]
-    container:
-      image: geerlingguy/drupal-vm:latest
+    #container:
+    # image: geerlingguy/drupal-vm:latest
 
     services:
       mariadb:
