@@ -70,8 +70,8 @@ jobs:
 
       - name: Install Composer Dependencies
         run: |
-          composer validate --no-scripts --no-plugins
-          composer self-update --2 --no-scripts --no-plugins
+          #composer validate --no-scripts --no-plugins
+          #composer self-update --2 --no-scripts --no-plugins
           composer install --no-scripts --no-plugins -vvv
 
       - name: Node install
