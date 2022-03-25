@@ -79,6 +79,11 @@ jobs:
         with:
           node-version: '14.x'
            
+      - name: PHPenv Install
+        run: |
+          phpenv-install.sh
+          UPDATE=yes phpenv-install.sh
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
