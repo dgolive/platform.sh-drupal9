@@ -82,7 +82,7 @@ jobs:
       - name: PHPenv Install
         run: |
           curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-          phpenv config-rm xdebug.ini
+          ~/.phpenv/bin/phpenv config-rm xdebug.ini
 
       - name: Create Release
         id: create_release
